@@ -1,48 +1,65 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import petData from '../database/petsData.json';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 function SinglePetPage({ id }) {
-  const [pet, setPate] = useState({});
-  const [backgroundColor, setBackgroundColor] = useState('#050a18');
-  const colors = ['#191743', '#0f0b2d', '#0a1628', '#081438'];
-  function handleBackgroundChange() {
-    colors.map((color) => setBackgroundColor(color));
-  }
+  // state to keep track of the pet being displayed
+  const [pet, setPet] = useState({});
+  //state to keep track of name of the pet
+  const [petName, setPetName] = useState('');
+
+  const petNameRef = useRef('');
+  // function to find pet from petdata and return pet
   function findPet() {
     const pet = petData.find((pet) => pet.id === id);
     return pet;
   }
+  // found pet set to current displayed pet
   useEffect(() => {
     const foundPet = findPet();
-    setPate((prev) => ({ ...foundPet }));
+    setPet((prev) => ({ ...foundPet }));
   }, [id]);
+
+  function handleChange(e) {
+    setPetName(e.target.value);
+  }
+  function handleGo() {
+    setPetName(petName);
+  }
   return (
     <section
       className="single-petContainer"
       style={{
-        backgroundColor: backgroundColor,
+        backgroundColor: '#191743',
         height: '100vh',
         width: '100vw',
       }}
     >
-      <div className="container mt-4 mx-auto vh-100 d-flex align-items-center">
-        <div className="row">
-          <div className="col-md-4">
-            <div className="img-container">
-              <img src={pet.avatar} alt="pet-avatar" />
-            </div>
-          </div>
-          <div className="col-md-6">
-            <div className="petbio-container">
-              <h2>{pet.name}</h2>
-              <p>{pet.bio}</p>
-              <button>Adopt</button>
-            </div>
-          </div>
-        </div>
+      <div className="img-container">
+        <img src={pet.avatar} alt="pet-avatar" />
       </div>
+      <div className="nameInput">
+        <input
+          type="text"
+          value={petName}
+          onChange={handleChange}
+          placeholder="Enter a name for your pet"
+        />
+        <button
+          type="submit"
+          onClick={() => {
+            setPetName(petName);
+            handleGo();
+          }}
+        >
+          {' '}
+          Go!
+        </button>
+      </div>{' '}
+      <h1>{petName || 'Kitty'}</h1>{' '}
     </section>
   );
 }
+
 export default SinglePetPage;
