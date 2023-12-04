@@ -2,6 +2,7 @@ import Link from 'next/link';
 import petsData from '../database/petsData.json';
 import { useState } from 'react';
 import { router } from 'next';
+import '../styles/tailwind.css';
 function ChoosePet({ onPetHover }) {
   const [selectedPet, setSelectedPet] = useState(null);
 
@@ -17,7 +18,7 @@ function ChoosePet({ onPetHover }) {
   };
   const colors = ['#191743', '#0f0b2d', '#0a1628', '#081438'];
   return (
-    <div className="petsDisplay">
+    <div className="bg-yellow-500 text-white p-4">
       <h3>Choose a pet to adopt</h3>
       <div className="petsContainer">
         {petsData.map((pet, index) => (
@@ -29,8 +30,8 @@ function ChoosePet({ onPetHover }) {
                 <img
                   src={pet.avatar}
                   alt={`Avatar of ${pet.name}`}
-                  onMouseEnter={() => onPetHover(colors[index])}
-                  onMouseLeave={() => onPetHover('black')}
+                  // onMouseEnter={() => onPetHover(colors[index])}
+                  // onMouseLeave={() => onPetHover('black')}
                 />
               </div>
 

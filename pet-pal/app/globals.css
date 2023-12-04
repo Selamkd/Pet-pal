@@ -1,4 +1,4 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -10,7 +10,7 @@ body {
 }
 .main {
   text-align: center;
-  /* margin: 5rem auto; */
+  margin: 5rem auto; 
 }
 .pet-info-modal {
   width: 28rem;
@@ -28,7 +28,7 @@ body {
   width: 55%;
 }
 .pet-avatar {
-  /* background-color:; */
+  background-color:;
 }
 .single-petContainer {
   overflow: hidden;
@@ -55,4 +55,4 @@ body {
   60% {
     transform: translateY(-10px);
   }
-}
+} */

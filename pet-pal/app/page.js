@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from './page.module.css';
 import ChoosePet from './components/meetPets';
 import { useState } from 'react';
+import './styles/tailwind.css';
 export default function Home() {
   const [backgroundColor, setBackgroundColor] = useState('#050a18');
 
@@ -13,7 +14,6 @@ export default function Home() {
     <main
       className="main"
       style={{
-        backgroundColor: backgroundColor,
         height: '100vh',
         width: '100vw',
       }}
